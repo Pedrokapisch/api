@@ -4,14 +4,12 @@ const UsersController = require("../controllers/UsersController");
 const usersRoutes = Router();
 
 function myMiddleware(request, response, next) {
-  
+  console.log("você passou no middleware");
+  next();
 }
-
-
-
 
 const usersController = new UsersController();
 
-usersRoutes.post("/", usersController.create);
+usersRoutes.post("/", myMiddleware, usersController.create);
 
 module.exports = usersRoutes;
